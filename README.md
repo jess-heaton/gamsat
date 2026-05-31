@@ -41,7 +41,18 @@ ANTHROPIC_MODEL=claude-opus-4-8   # optional override
 
 ## Deploying
 
-Deploys cleanly to **Vercel**: import the repo, then set the `ANTHROPIC_API_KEY` environment variable in the project settings. Essay marking calls Claude from a serverless function, so the key stays private.
+### Railway
+
+1. **New Project → Deploy from GitHub repo** and pick `jess-heaton/gamsat`.
+2. Railway auto-detects Next.js (Nixpacks): it runs `npm run build` then `npm run start`. `next start` binds to the `PORT` Railway provides, so no extra config is needed (a `railway.json` is included to make the build/start explicit).
+3. Under **Variables**, add:
+   - `ANTHROPIC_API_KEY` = your Anthropic key (required for essay marking)
+   - `ANTHROPIC_MODEL` = `claude-opus-4-8` (optional)
+4. Deploy, then open the generated domain. Essay marking calls Claude from the server, so the key stays private.
+
+### Vercel
+
+Import the repo and set the same `ANTHROPIC_API_KEY` variable in project settings.
 
 ## Notes
 
